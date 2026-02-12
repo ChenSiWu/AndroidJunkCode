@@ -10,7 +10,7 @@ import org.gradle.api.tasks.Input
 import org.gradle.api.tasks.Internal
 import java.io.File
 
-class JunkCodeConfig(@Internal val name: String) {
+open class JunkCodeConfig(@Internal val name: String) {
     @Input
     var packageBase: String = ""
 

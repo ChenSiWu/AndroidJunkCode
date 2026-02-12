@@ -4,6 +4,14 @@ plugins {
     alias(libs.plugins.kotlin.jvm)
 }
 
+
+mavenPublishing {
+    publishToMavenCentral()
+}
+
+// Gradle Plugin  Portal group id不一样
+group = "io.github.qq549631030"
+
 gradlePlugin {
     website.set(project.properties["POM_URL"].toString())
     vcsUrl.set(project.properties["POM_SCM_URL"].toString())
