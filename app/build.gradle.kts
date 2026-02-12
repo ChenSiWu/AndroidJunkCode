@@ -2,19 +2,18 @@ import cn.hx.plugin.junkcode.ext.JunkCodeConfig
 
 plugins {
     alias(libs.plugins.android.application)
-    alias(libs.plugins.kotlin.android)
     alias(libs.plugins.android.junk.code)
     alias(libs.plugins.dexcount)
 }
 
 android {
     namespace = "cn.hx.plugin.junkcode.demo"
-    compileSdk = 34
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "cn.hx.plugin.junkcode.demo"
-        minSdk = 19
-        targetSdk = 34
+        minSdk = 23
+        targetSdk = 36
         versionCode = 1
         versionName = "1.0"
         multiDexEnabled = true
@@ -37,9 +36,6 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
-    }
-    kotlinOptions {
-        jvmTarget = "1.8"
     }
     lint {
         checkReleaseBuilds = false

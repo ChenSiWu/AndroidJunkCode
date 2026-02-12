@@ -1,6 +1,6 @@
 plugins {
-    id("com.gradle.plugin-publish") version "1.3.0"
-    id("com.vanniktech.maven.publish") version "0.29.0"
+    id("com.gradle.plugin-publish") version "2.0.0"
+    id("com.vanniktech.maven.publish") version "0.36.0"
     alias(libs.plugins.kotlin.jvm)
 }
 
