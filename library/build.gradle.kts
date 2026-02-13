@@ -1,27 +1,29 @@
+import com.vanniktech.maven.publish.MavenPublishBaseExtension
+
 plugins {
-    id("com.gradle.plugin-publish") version "2.0.0"
-    id("com.vanniktech.maven.publish") version "0.36.0"
     alias(libs.plugins.kotlin.jvm)
 }
 
-
-mavenPublishing {
-    publishToMavenCentral()
-}
-
-// Gradle Plugin  Portal group id不一样
-group = "io.github.qq549631030"
-
-gradlePlugin {
-    website.set(project.properties["POM_URL"].toString())
-    vcsUrl.set(project.properties["POM_SCM_URL"].toString())
-    plugins {
-        create("androidJunkCode") {
-            id = "io.github.qq549631030.android-junk-code"
-            implementationClass = "cn.hx.plugin.junkcode.plugin.AndroidJunkCodePlugin"
-            displayName = "AndroidJunkCode plugin"
-            description = project.properties["POM_DESCRIPTION"].toString()
-            tags.set(listOf("android", "generate", "junk", "code"))
+if (project.properties["publishToMaven"].toString().toBoolean()) {
+    apply(plugin = "com.vanniktech.maven.publish")
+    configure<MavenPublishBaseExtension> {
+        publishToMavenCentral()
+    }
+} else {
+    apply(plugin = "com.gradle.plugin-publish")
+    group = "io.github.qq549631030"//这里group id 不一样
+    version = project.properties["VERSION_NAME"].toString()
+    configure<GradlePluginDevelopmentExtension> {
+        website.set(project.properties["POM_URL"].toString())
+        vcsUrl.set(project.properties["POM_SCM_URL"].toString())
+        plugins {
+            create("androidJunkCode") {
+                id = "io.github.qq549631030.android-junk-code"
+                implementationClass = "cn.hx.plugin.junkcode.plugin.AndroidJunkCodePlugin"
+                displayName = "AndroidJunkCode plugin"
+                description = project.properties["POM_DESCRIPTION"].toString()
+                tags.set(listOf("android", "generate", "junk", "code"))
+            }
         }
     }
 }
